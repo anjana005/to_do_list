@@ -1,18 +1,18 @@
 import React from 'react'
 import ToDo from './ToDo'
 
-const ToDoList = ({dataList,handleToggle,handleFilter}) => {
+const ToDoList = ({ dataList, handleToggle, removeItem }) => {
   return (
     <div>
-        {
-            dataList.map(value=>{
-                return (
-                    <ToDo {...{handleToggle,value}}/>
-                    
-                )
-            
+      {
+        dataList.map(value => {
+          return (
+            <ToDo {...{ handleToggle, value, removeItem }} />
+
+          )
+
         })}
-        <button style={{margin: '20px'}} onClick={handleFilter}>Clear Completed</button>
+
     </div>
   )
 }

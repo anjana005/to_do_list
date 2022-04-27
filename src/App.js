@@ -5,12 +5,12 @@ import ToDoList from './ToDoList';
 import ToDoForm from './ToDoForm';
 
 function App() {
-  const [toDoList,setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState([]);
   const handleToggle = (id) => {
     let mapped = toDoList.map(task => {
-      return task.id === +id ? { ...task, complete: !task.complete } : { ...task};
+      return task.id === +id ? { ...task, complete: !task.complete } : { ...task };
     });
-    console.log(toDoList,id);
+    
     setToDoList(mapped);
 
   }
@@ -20,7 +20,7 @@ function App() {
     setToDoList(copy);
   }
 
- 
+
   const handleFilter = () => {
     let filtered = toDoList.filter(task => {
       return !task.complete;
@@ -28,11 +28,16 @@ function App() {
     setToDoList(filtered);
   }
 
+  const removeItem = (id) => {
+    let filtered = toDoList.filter(task => task.id !== parseInt(id));
+    setToDoList(filtered);
+  }
+
   return (
     <div className="App">
       <Header />
-      <ToDoList dataList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
-      <ToDoForm addTask={addTask}/>
+      <ToDoForm addTask={addTask} handleFilter={handleFilter} />
+      <ToDoList dataList={toDoList} handleToggle={handleToggle} removeItem={removeItem} />
     </div>
   );
 }
