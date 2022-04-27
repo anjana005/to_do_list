@@ -7,8 +7,13 @@ const ToDoForm = ({ addTask, handleFilter }) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(userInput){
     addTask(userInput);
     setUserInput("");
+    }
+    else{
+      alert("input can't be empty");
+    }
   }
   return (
     <div className="flex flex-row justify-center">
@@ -22,6 +27,7 @@ const ToDoForm = ({ addTask, handleFilter }) => {
           <button onClick={handleFilter} className="px-3 py-1 rounded-md bg-red-500 text-gray-800 font-semibold border-gray-500">Clear Completed</button>
         </div>
       </div>
+      
     </div>
   )
 }
